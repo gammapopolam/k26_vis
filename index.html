@@ -19,7 +19,7 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 <script>
 const map = L.map('map'); 
-map.setView({lat: 56.152741, lng: 93.535282}, 12);
+map.setView({lat: 56.2446, lng: 93.5370}, 12);
 alert('Векторные тайлы всей сети могут выглядеть некорректно. Нажмите на остановку, чтобы показать её паук маршрутов')
 var baseLayer = L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {
     maxZoom: 18,
@@ -44,7 +44,7 @@ function onEachFeature(feature, layer) {
   layer.bindPopup(popupContent);
   
 }
-var basetileURL='http://0.0.0.0:8000/k26_2/all_tiles/{z}/{x}/{y}.mvt'
+var basetileURL='https://raw.githubusercontent.com/gammapopolam/k26_vis/main/all_tiles/{z}/{x}/{y}.mvt'
 var basetile = L.vectorGrid.protobuf(basetileURL, {
   vectorTileLayerStyles: {
         "lines": function(properties, zoom) {
@@ -89,7 +89,7 @@ if(clickedFeature) {
   var stop_id = 'stop_'+attributes.stop_id;
   var stop_name = attributes.stop_name
   let popup = L.popup().setLatLng(latlng).setContent(stop_name).openOn(map);
-  var tileURL = `http://0.0.0.0:8000/k26_2/tiles/${stop_id}/{z}/{x}/{y}.mvt`
+  var tileURL = `https://raw.githubusercontent.com/gammapopolam/k26_vis/main/tiles/${stop_id}/{z}/{x}/{y}.mvt`
   console.log(tileURL);
   var tile = L.vectorGrid.protobuf(tileURL, {
   vectorTileLayerStyles: {
